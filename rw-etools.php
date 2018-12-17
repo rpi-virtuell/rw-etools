@@ -51,7 +51,7 @@ function accord_generator($atts, $content=''){
 
 			$html = '<div class="etool accordion">'.$description.'</div>';
 			$html .="<script>setTimeout(details_closeAll,2000);</script>";
-			
+			$html .="<script>setTimeout(details_closeAll,2000);</script>";
 			
 			
 			return $html;
@@ -81,19 +81,23 @@ function hook_add_accordion_css() {
 
 			function details_closeAll(index){
 			  
-			  index = i || 0;
+			  index = index || -1;
 			  
 			  var len = document.getElementsByTagName("details").length;
 
 			  for(var i=0; i<len; i++){
 				if(i != index){
 				  document.getElementsByTagName("details")[i].removeAttribute("open");
+				  document.getElementsByTagName("details")[i].style.opacity="1";
 				}
 			  }
 			}
 	   </script>
 	   <style>
-            .accordion details {
+             .etool.accordion{
+		 		
+	          }
+		     .accordion details {
 				  min-height: 30px;
 				  padding: 4px 7px 4px 7px;
 				  margin: 0 auto;
@@ -101,6 +105,7 @@ function hook_add_accordion_css() {
 				  font-size: 22px;
 				  border: 1px solid rgba(0,0,0,.1);
 				  box-sizing: border-box;
+			      opacity: .2;
   			  }
 			  .accordion details:hover { background: rgba(100,100,100,0.15); }
 			  .accordion details + .accordion details {
